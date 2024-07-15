@@ -1,6 +1,37 @@
 {% extends "layout.html" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
+
+<div class="item">
+  <div class="banner">
+    <h1>Welcome</h1>
+  </div>
+  <div class="info">
+    {{ content }}
+    <p>
+      Hey {{name}}! 
+    </p>
+    
+    <p>
+      You will be able to review the projects submitted to the event in a comparative rotation, where you will compare two projects at a time You can review as many projects as you want, so you are free to stop at any time
+    </p>
+
+    <p>
+      You can review as many projects as you want, so you are free to stop at any time
+    </p>
+
+  </div>
+</div>
+
+<div class="item">
+  <div class="info">
+    <form action="{{ url_for('welcome_done') }}" method="post">
+      <input type="submit" name="action" value="Start reviewing" class="button-full button-gap positive">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+    </form>
+  </div>
+</div>
+
 <div class="item">
   <div class="banner" id="admin-header">
     <h1>Admin</h1>
@@ -24,7 +55,7 @@
     <table id="items">
       <thead>
         <tr>
-          <th data-sort-method="number">Id</th>
+          <th data-sort-method="number">h1 Text</th>
           <th data-sort-method="caseInsensitiveSort">Name</th>
           <th data-sort-method="caseInsensitiveSort">Location</th>
           <th data-sort-method="caseInsensitiveSort">Description</th>

@@ -183,7 +183,7 @@ hr {
 
 .banner {
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: 0.5rem;
   color: $light;
   background-color: $dark;
@@ -230,14 +230,12 @@ hr {
 input[type=submit] {
   color: $light;
   background-color: $dark;
-  border: 2px solid $dark;
   font-size: 1.2rem;
-  text-transform: uppercase;
   text-align: center;
   height: 3rem;
-  -webkit-border-radius: 0; // fix rounded buttons on iOS
+  -webkit-border-radius: 0.5rem; // fix rounded buttons on iOS
   td & {
-    border: none;
+    border: black;
     width: 100%;
     height: 100%;
   }
@@ -307,7 +305,7 @@ input[type=submit] {
   color: $light;
   font-size: 1.2rem;
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: center;
 }
 
@@ -317,7 +315,7 @@ input[type=submit] {
 }
 
 input[type=submit].positive {
-  background-color: $positive-color;
+  background-color: $dark;
 }
 
 input[type=submit].negative {
