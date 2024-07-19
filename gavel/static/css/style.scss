@@ -11,6 +11,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 html {
@@ -166,6 +167,8 @@ hr {
 .info {
   display: flex;
   flex-direction: column;
+  max-width: 35.5rem;
+  margin: auto;
   padding: 1rem;
   gap: 1.25rem;
 }
