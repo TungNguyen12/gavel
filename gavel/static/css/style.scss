@@ -2,8 +2,8 @@
 
 * {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -98,14 +98,14 @@ th {
 th.sort-header {
   cursor: pointer;
   &::selection {
-    background:transparent;
+    background: transparent;
   }
 }
 
 table th.sort-header::after {
-  content: " ( )";
+  content: ' ( )';
   visibility: hidden;
-  font-family: "Source Code Pro", "Courier New", monospace;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
   opacity: 0.5;
 }
 
@@ -114,17 +114,17 @@ table th.sort-header:hover::after {
 }
 
 table th.sort-up::after {
-  content: " (+)";
+  content: ' (+)';
   visibility: visible;
 }
 
 table th.sort-down::after {
-  content: " (-)";
+  content: ' (-)';
   visibility: visible;
 }
 
 textarea,
-input[type=text] {
+input[type='text'] {
   font-weight: normal;
   width: 100%;
   margin-top: 0.25rem;
@@ -146,7 +146,6 @@ a:focus {
   text-decoration: underline;
 }
 
-
 hr {
   position: relative;
   margin: 1.5rem 0;
@@ -160,8 +159,7 @@ hr {
 }
 
 .info {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
 }
 
 .api-link {
@@ -184,6 +182,7 @@ hr {
 .banner {
   text-align: center;
   text-transform: capitalize;
+  // padding: 0.5rem;
   margin-bottom: 0.5rem;
   color: $light;
   background-color: $dark;
@@ -227,17 +226,18 @@ hr {
   background-color: $vote-color;
 }
 
-input[type=submit] {
+input[type='submit'] {
   color: $light;
-  background-color: $dark;
+  // background-color: $color-violet-500;
   font-size: 1.2rem;
   text-align: center;
-  height: 3rem;
-  -webkit-border-radius: 0.5rem; // fix rounded buttons on iOS
-  td & {
-    border: black;
-    width: 100%;
-    height: 100%;
+  // height: 3rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem; // fix rounded buttons on iOS
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: $color-violet-950;
   }
 }
 
@@ -314,17 +314,21 @@ input[type=submit] {
   color: $dark;
 }
 
-input[type=submit].positive {
-  background-color: $dark;
+input[type='submit'].positive {
+  background-color: $color-violet-500;
 }
 
-input[type=submit].negative {
+input[type='submit'].negative {
   background-color: $negative-color;
 }
 
-input[type=submit].neutral {
+input[type='submit'].neutral {
   background-color: $neutral-color;
   color: $dark;
+}
+
+input[type='submit']:hover {
+  background-color: $color-violet-700;
 }
 
 .disabled {
@@ -336,17 +340,17 @@ input[type=submit].neutral {
 }
 
 .upload-container {
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .field {
-    padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 #footer {
   margin-top: 2rem;
-  border-top: 1px solid $light-grey;
+  // border-top: 1px solid $light-grey;
   p {
     font-size: 0.75rem;
     text-align: center;
