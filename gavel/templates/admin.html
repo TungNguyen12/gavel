@@ -2,66 +2,6 @@
 content %}
 
 <div class="item">
-  <div class="banner">
-    <h1>Welcome</h1>
-  </div>
-  <div class="info">
-    {{ content }}
-    <div class="info__header">
-      <h1>Hey Javier,</h1>
-    </div>
-
-    <div class="info__guidance">
-      <div class="info__guidance--heading">
-        <h3>How to use Gavel</h3>
-      </div>
-
-      <div class="info__guidance--steps">
-        <div>
-          <h4>First step</h4>
-          <p>
-            You will see one project only to review, when you are done the
-            comparison starts
-          </p>
-        </div>
-        <div>
-          <h4>Compare projects</h4>
-          <p>
-            You will be comparing two projects at a time, from which you have to
-            select one as better than the other
-          </p>
-        </div>
-        <div>
-          <h4>Skipping projects</h4>
-          <p>
-            If a project seems inappropriate, violates event rules or it is not
-            working properly, you can choose the option to skip it
-          </p>
-        </div>
-      </div>
-
-      <div class="info__guidance--footer">
-        <p>
-          If you have problems reviewing the projects, please contact the event
-          organizer
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="info">
-    <form action="{{ url_for('welcome_done') }}" method="post">
-      <input
-        type="submit"
-        name="action"
-        value="Start reviewing"
-        class="button-full button-gap positive"
-      />
-      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
-    </form>
-  </div>
-</div>
-
-<div class="item">
   <div class="banner" id="admin-header">
     <h1>Admin</h1>
   </div>
@@ -82,22 +22,30 @@ content %}
   </div>
   <div class="info">
     <table id="items">
-      <!-- <thead>
+      <thead>
         <tr>
           <th data-sort-method="number">h1 Text</th>
           <th data-sort-method="caseInsensitiveSort">Name</th>
           <th data-sort-method="caseInsensitiveSort">Location</th>
           <th data-sort-method="caseInsensitiveSort">Description</th>
-          <th class="sort-default" data-sort-method="number" data-sort-order="desc">Mu</th>
+          <th
+            class="sort-default"
+            data-sort-method="number"
+            data-sort-order="desc"
+          >
+            Mu
+          </th>
           <th data-sort-method="number">Sigma Squared</th>
           <th data-sort-method="number">Votes</th>
           <th data-sort-method="number">Seen</th>
           <th data-sort-method="number" data-sort-order="desc">Skipped</th>
-          <th data-sort-method="caseInsensitiveSort" data-sort-order="desc">Prioritize</th>
+          <th data-sort-method="caseInsensitiveSort" data-sort-order="desc">
+            Prioritize
+          </th>
           <th data-sort-method="caseInsensitiveSort">Active</th>
           <th class="no-sort">Delete</th>
         </tr>
-      </thead> -->
+      </thead>
       <tbody>
         {% for item in items %}
         <tr
@@ -184,7 +132,7 @@ content %}
   </div>
   <div class="info">
     <table id="annotators">
-      <!-- <thead>
+      <thead>
         <tr>
           <th class="sort-default" data-sort-method="number">Id</th>
           <th data-sort-method="caseInsensitiveSort">Name</th>
@@ -198,7 +146,7 @@ content %}
           <th data-sort-method="caseInsensitiveSort">Active</th>
           <th class="no-sort">Delete</th>
         </tr>
-      </thead> -->
+      </thead>
       <tbody>
         {% for annotator in annotators %}
         <tr class="{{ 'disabled' if not annotator.active else '' }}">
