@@ -135,9 +135,11 @@ def login(secret):
 @requires_open(redirect_to='index')
 @requires_active_annotator(redirect_to='index')
 def welcome():
+    annotator_name = get_current_annotator().name
     return render_template(
         'welcome.html',
-        content=utils.render_markdown(settings.WELCOME_MESSAGE)
+        content=utils.render_markdown(settings.WELCOME_MESSAGE),
+        annotator_name=annotator_name
     )
 
 @app.route('/welcome/done', methods=['POST'])

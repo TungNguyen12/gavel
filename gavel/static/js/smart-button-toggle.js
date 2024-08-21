@@ -1,27 +1,46 @@
-function buttonSelected(event) {
-  const radioButton = event.target;
-
-  // Find the associated label using the 'for' attribute
-  const label = document.querySelector(`label[for="${radioButton.id}"]`);
-  const voteSubmit = document.getElementById('vote-submit');
-
-  if (radioButton.value === 'Skip') {
-    voteSubmit.value = 'Confirm Skip';
-  } else if (label) {
-    // Retrieve the text content of the label
-    const labelText = label.textContent.trim();
-    voteSubmit.value = `Vote for ${labelText}`
+function extractProjectLabelFromNode(labelNode) {
+  const labelText = labelNode.textContent.trim()
+  let resultText
+  if (labelText.startsWith('Choose ')) {
+    resultText = labelText.substring(7)
+  } else {
+    resultText = labelText
   }
-  voteSubmit.disabled = false;
+  return resultText
 }
 
-(function() {
-  document.getElementsByName('action').forEach(elem => {
-    if (elem.type === 'radio') {
-      elem.checked = false;
-      elem.onchange = buttonSelected;
-    }
-  });
+function buttonSelected(event) {
+  const radioButton = event.target
 
-  document.getElementById('vote-submit').disabled = true;
-})();
+  const label = document.querySelector(`label[for="${radioButton.id}"]`)
+  const voteSubmit = document.getElementById('vote-submit')
+
+  if (radioButton.value === 'Skip') {
+    const currentProject = document.querySelector(
+      `label[for="vote-current-radio"]`
+    )
+    if (currentProject) {
+      const currentProjectLabel = extractProjectLabelFromNode(currentProject)
+      voteSubmit.value = `Skip ${currentProjectLabel}`
+    } else {
+      voteSubmit.value = 'Confirm Skip'
+    }
+  
+  } else if (label) {
+    const resultText = extractProjectLabelFromNode(label)
+    voteSubmit.value = `Vote for ${resultText}`
+  }
+  voteSubmit.disabled = false
+}
+
+;(function () {
+  document.getElementsByName('action').forEach((elem) => {
+    if (elem.type === 'radio') {
+      elem.checked = false
+      elem.onchange = buttonSelected
+    }
+  })
+
+  document.getElementById('vote-submit').disabled = true
+})()
+

@@ -31,21 +31,24 @@ div {
   margin: 0;
 }
 
-h1,
+@mixin text-properties {
+  line-height: 1.25;
+  margin: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  line-height: 1.25;
-  margin: 0;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  @include text-properties;
   font-family: $body-font;
-  font-weight: bold;
 }
 
 h1 {
+  @include text-properties;
   font-family: $heading-font;
 }
 
@@ -141,11 +144,10 @@ a {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
+  &:hover {
+    color: $link-hover-color;
+  }
 }
-
-// a.colored {
-//   color: $text-color;
-// }
 
 a:hover,
 a:focus {
@@ -193,7 +195,6 @@ hr {
 .banner {
   text-align: center;
   text-transform: capitalize;
-  // padding: 0.5rem;
   margin-bottom: 0.5rem;
   color: $light;
   background-color: $dark;
@@ -217,35 +218,18 @@ hr {
   background-color: $error-color;
 }
 
-#previous-header {
-  background-color: $previous-color;
-}
-
-#previous-body {
-  background-color: mix($previous-color, white, 25%);
-}
-
-#current-header {
-  background-color: $current-color;
-}
-
-#current-body {
-  background-color: mix($current-color, white, 25%);
-}
 
 #vote-header {
   background-color: $vote-color;
 }
 
 input[type='submit'] {
-  color: $light;
-  // background-color: $color-violet-500;
+  text-wrap: wrap;
   font-size: 1.2rem;
   text-align: center;
-  // height: 3rem;
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 0.5rem; // fix rounded buttons on iOS
+  border-radius: 0.5rem;
   transition: background-color 0.2s ease;
   &:hover {
     background-color: $color-violet-950;
@@ -272,30 +256,53 @@ input[type='submit'] {
 
 #vote-previous {
   background-color: $previous-color;
-  border: 3px solid $previous-color;
+  @extend .overflow-hidden;
+  border: 0.125rem solid $previous-color;
+  border-radius: 0.5rem;
+  &:hover {
+    border: 0.125rem solid $previous-color-highlight;
+  }
 }
 
 #vote-current {
   background-color: $current-color;
-  border: 3px solid $current-color;
+  @extend .overflow-hidden;
+  border: 0.125rem solid $current-color;
+  border-radius: 0.5rem;
+  &:hover {
+    border: 0.125rem solid $current-color-highlight;
+  }
 }
 
 #vote-continue {
   background-color: $current-color;
-  border: 3px solid $current-color;
+  @extend .overflow-hidden;
+  border: 0.125rem solid $current-color;
+  border-radius: 0.5rem;
 }
 
 #vote-skip {
-  background-color: $vote-skip-color;
-  border: 3px solid $vote-skip-color;
+  background-color: $vote-skip-color-highlight;
+  border: 0.125rem solid $light;
+  @extend .overflow-hidden;
+  border-radius: 0.5rem;
+  &:hover {
+    border: 0.125rem solid $vote-skip-color-highlight;
+  }
 }
 
 #vote-submit {
   background-color: $vote-submit-color;
+  color: $light;
+  text-transform: capitalize;
+  &:hover {
+    background-color: $color-violet-950;
+  }
 }
 
 #vote-submit:disabled {
   background-color: $light-grey;
+  color: $text-disabled;
   border: none;
 }
 
@@ -313,7 +320,7 @@ input[type='submit'] {
   display: inline-block;
   padding: 0.625rem 1.25rem;
   width: 100%;
-  color: $light;
+  color: $text-color;
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: capitalize;
@@ -326,7 +333,7 @@ input[type='submit'] {
 }
 
 input[type='submit'].positive {
-  background-color: $color-violet-500;
+  background-color: $positive-color;
 }
 
 input[type='submit'].negative {
@@ -340,6 +347,7 @@ input[type='submit'].neutral {
 
 input[type='submit']:hover {
   background-color: $color-violet-700;
+  color: $light;
 }
 
 .disabled {
@@ -392,5 +400,106 @@ input[type='submit']:hover {
   }
   :hover {
     color: $color-violet-500;
+  }
+}
+
+// Mixins
+
+@mixin border($color: black) {
+  border: 0.125rem solid $color;
+  border-radius: 0.5rem;
+}
+
+@mixin padding($increment) {
+  padding: $increment * 0.5rem;
+}
+
+// Utility classes
+.p-1 {
+  @include padding(1);
+}
+
+.p-2 {
+  @include padding(2);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+// Element classes
+
+.card {
+  @include border;
+  @extend .overflow-hidden;
+  width: 100%;
+  .title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+  }
+  .header {
+    @include padding(1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header-dark {
+  background-color: $card-header-background;
+  color: $card-header-color;
+}
+
+.note {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.compare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  gap: 1rem;
+  padding: 4rem 0;
+}
+
+.radio-skip {
+  @extend .radio-button;
+  label {
+    @extend .note;
+  }
+}
+
+.previous {
+  @include border($previous-color);
+}
+
+.current {
+  @include border($current-color);
+}
+
+.admin-table {
+  @extend .p-2
+}
+
+@media (max-width: 800px) {
+  .compare {
+    width: 100%;
+    padding: 1rem;
+  }
+  .admin-table {
+    @extend .overflow-x-auto;
   }
 }
