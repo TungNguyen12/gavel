@@ -64,12 +64,15 @@ def index():
         if annotator.next is None:
             return render_template(
                 'wait.html',
-                content=utils.render_markdown(settings.WAIT_MESSAGE)
+                content=utils.render_markdown(settings.WAIT_MESSAGE),
+                annotator_name = annotator.name,
+                seen_count = len(annotator.ignore)
             )
         elif annotator.prev is None:
             return render_template('begin.html', item=annotator.next)
         else:
-            return render_template('vote.html', prev=annotator.prev, next=annotator.next)
+            seen_count = 1+len(annotator.ignore)
+            return render_template('vote.html', prev=annotator.prev, next=annotator.next, seen_count=seen_count)
 
 @app.route('/vote', methods=['POST'])
 @requires_open(redirect_to='index')
