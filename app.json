@@ -3,6 +3,7 @@
         "heroku-postgresql:essential-0",
         "heroku-redis:mini"
     ],
+    "stack": "heroku-24",
     "formation": {
         "web": {
             "quantity": 1,
