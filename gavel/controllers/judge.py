@@ -139,10 +139,12 @@ def login(secret):
 @requires_active_annotator(redirect_to='index')
 def welcome():
     annotator_name = get_current_annotator().name
+    active_items_count = Item.query.filter(Item.active == True).count()
     return render_template(
         'welcome.html',
         content=utils.render_markdown(settings.WELCOME_MESSAGE),
-        annotator_name=annotator_name
+        annotator_name=annotator_name,
+        active_items_count=active_items_count
     )
 
 @app.route('/welcome/done', methods=['POST'])
